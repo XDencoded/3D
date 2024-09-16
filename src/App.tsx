@@ -1,50 +1,37 @@
+import {
+	AsciiRenderer,
+	ContactShadows,
+	Html,
+	MeshReflectorMaterial,
+	OrbitControls,
+} from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, ContactShadows, Html } from '@react-three/drei'
-import { Suspense } from 'react'
 import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier'
-import { Light } from './assets/components/Light'
-import _ from 'lodash'
+import { Suspense } from 'react'
 import { Effects } from './assets/components/Effect'
+import { Light } from './assets/components/Light'
 import { Porsh } from './assets/components/Porsh'
 
 export function App(): JSX.Element | null {
 	return (
 		<Canvas
+			performance={{ min: 0.1 }}
+			frameloop='demand'
 			gl={{ logarithmicDepthBuffer: true, antialias: false }}
 			dpr={[1, 1.5]}
 			shadows
-			camera={{ position: [10, 10, 10], fov: 75 }}
+			camera={{ position: [15, 5, 10], fov: 75, far: 50 }}
 		>
 			<OrbitControls
-				// position={[0, 20, 0]}
 				// autoRotate
 				autoRotateSpeed={1}
 				enablePan={false}
 				minPolarAngle={0}
-				minDistance={10}
+				minDistance={8}
 				maxPolarAngle={Math.PI / 2.1}
 			/>
-
-			<Html center>
-				<div className='info'>
-					<ul>
-						<li>
-							<b>1</b>Выкл свет
-						</li>
-						<li>
-							<b>2</b>Вкл габариты
-						</li>
-						<li>
-							<b>3</b>Вкл дальний свет
-						</li>
-
-						<li>
-							<b>space</b>Стоп-сигнал
-						</li>
-					</ul>
-				</div>
-			</Html>
 			<Light />
+
 			<Suspense fallback>
 				<ContactShadows
 					resolution={2048}
@@ -72,6 +59,7 @@ export function App(): JSX.Element | null {
 						args={[100, 0.5, 100]}
 					></CuboidCollider>
 				</Physics>
+				
 				<Effects />
 			</Suspense>
 		</Canvas>

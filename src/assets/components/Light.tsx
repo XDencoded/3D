@@ -6,7 +6,7 @@ export function Light(): JSX.Element | null {
 	return (
 		<>
 			<Environment frames={Infinity} resolution={512} blur={1}>
-				<color attach='background' args={['#000']} />
+				<color attach='background' args={['#3C3D37']} />
 				<Lightformer
 					intensity={10}
 					rotation-x={Math.PI / 2}
@@ -56,7 +56,7 @@ export function Light(): JSX.Element | null {
 
 				<Lightformer
 					form='ring'
-					color='red'
+					color='#ffd700'
 					intensity={10}
 					scale={5}
 					position={[-20, 5, 20]}
@@ -64,7 +64,7 @@ export function Light(): JSX.Element | null {
 				/>
 				<Lightformer
 					form='ring'
-					color='red'
+					color='#ffd700'
 					intensity={10}
 					scale={5}
 					position={[20, 5, -20]}

@@ -1,5 +1,5 @@
-import React, {  useRef, useState } from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, { useRef, useState } from 'react'
+import { Html, Trail, useGLTF } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 
 export function BackLight() {
@@ -13,7 +13,7 @@ export function BackLight() {
 	useFrame(() => {
 		if (stripe.current) {
 			stripe.current.color.setRGB(inten * _ * 20, 0, 0)
-			stripe1.current.color.setRGB(inten *  _ * 20, 0, 0)
+			stripe1.current.color.setRGB(inten * _ * 20, 0, 0)
 		}
 	})
 
@@ -57,27 +57,45 @@ export function BackLight() {
 		<group dispose={null}>
 			<group position={[0, 0, 0]}>
 				{/* ЗАДНИЙ СВЕТ */}
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.Object_117.geometry}
-					material={materials.red_light_main}
-					position={[-3.792, -1.099, 0.035]}
-					scale={0.021}
+				<Trail
+					width={3} // Width of the line
+					color={'hotpink'} // Color of the line
+					length={4} // Length of the line
+					decay={4} // How fast the line fades away
+					local={false} // Wether to use the target's world or local positions
+					stride={0} // Min distance between previous and current point
+					interval={10} // Number of frames to wait before next calculation
+					target={undefined} // Optional target. This object will produce the trail.
+					attenuation={(width) => width} // A function to define the width in each point along it.
 				>
-					<meshBasicMaterial ref={stripe} toneMapped={false} />
-					<pointLight intensity={inten} color={[20, 0, 0]} distance={2.5} castShadow  />
-				</mesh>
-				<mesh
-					castShadow
-					receiveShadow
-					geometry={nodes.Object_123.geometry}
-					material={materials.reflectors}
-					position={[-3.784, -1.406, 0.035]}
-					scale={0.021}
-				>
-					<meshBasicMaterial ref={stripe1} toneMapped={false}  />
-				</mesh>
+					<mesh
+						castShadow
+						receiveShadow
+						geometry={nodes.Object_117.geometry}
+						material={materials.red_light_main}
+						position={[-3.792, -1.099, 0.035]}
+						scale={0.021}
+					>
+						<meshBasicMaterial ref={stripe} toneMapped={false} />
+
+						<pointLight
+							intensity={inten}
+							color={[20, 0, 0]}
+							distance={2.5}
+							castShadow
+						/>
+					</mesh>
+					<mesh
+						castShadow
+						receiveShadow
+						geometry={nodes.Object_123.geometry}
+						material={materials.reflectors}
+						position={[-3.784, -1.406, 0.035]}
+						scale={0.021}
+					>
+						<meshBasicMaterial ref={stripe1} toneMapped={false} />
+					</mesh>
+				</Trail>
 			</group>
 		</group>
 	)
