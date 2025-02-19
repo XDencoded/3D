@@ -4,12 +4,16 @@ import { Headlight } from './Porsh/Headlight'
 import { Wheels } from './Porsh/Wheels'
 import { RightDoor } from './Porsh/RightDoor'
 import { TurnSignals } from './Porsh/TurnSignals'
+import { useFrame, Vector3 } from '@react-three/fiber'
+import { useRef } from 'react'
+import * as THREE from 'three'
 
-export function Porsh() {
+export function Porsh(props: { position: Vector3 }) {
 	const { nodes, materials } = useGLTF<any>('porsh/scene.gltf') as any
+
 	return (
-		<group dispose={null}>
-			<group position={[0, 3, 0]}>
+		<group castShadow dispose={null}>
+			<group {...props}>
 				{/* Задний свет */}
 				<BackLight />
 				{/* Передний свет */}
@@ -36,7 +40,12 @@ export function Porsh() {
 					position={[0.22, -1.161, 0.035]}
 					scale={0.021}
 				>
-					 <Outlines thickness={3} color="#ffffff" />
+					{/* <Edges
+						linewidth={4}
+						scale={1.002}
+						threshold={15}
+						color='#fff'
+					/> */}
 				</mesh>
 				{/* Левая ручка двери */}
 				<mesh
@@ -160,7 +169,9 @@ export function Porsh() {
 					material={materials.leather_seam}
 					position={[0.304, -1.459, -0.044]}
 					scale={0.021}
-				/>
+				>
+					<meshMatcapMaterial color={'#ef6b1b'} />
+				</mesh>
 
 				{/* Салон  */}
 				<mesh
@@ -203,7 +214,10 @@ export function Porsh() {
 					material={materials.rim_chrome}
 					position={[0.304, -1.683, -0.061]}
 					scale={0.021}
-				/>
+				>
+					{' '}
+					<Edges linewidth={1} scale={1.002} threshold={15} color='#fff' />
+				</mesh>
 
 				{/* ЛЕвое зеркало */}
 				<mesh
@@ -413,7 +427,9 @@ export function Porsh() {
 					material={materials.leather_perforated}
 					position={[0.137, -1.824, 0.004]}
 					scale={0.021}
-				/>
+				>
+					<meshMatcapMaterial color={'#8c210d'} />
+				</mesh>
 			</group>
 		</group>
 	)

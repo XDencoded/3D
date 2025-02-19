@@ -1,11 +1,8 @@
-import React, { useRef, useState } from 'react'
-import { Html, useGLTF } from '@react-three/drei'
+import { useEffect, useState } from 'react'
+import { SpotLight, useGLTF } from '@react-three/drei'
 
 export function Headlight() {
 	const [head, setHead] = useState<number>(0)
-	// Габарит
-	const stripe = useRef<any>()
-	const stripe1 = useRef<any>()
 	const { nodes, materials } = useGLTF<any>('porsh/scene.gltf') as any
 
 	const handleKeyDown = (event: KeyboardEvent) => {
@@ -20,7 +17,7 @@ export function Headlight() {
 		}
 	}
 
-	React.useEffect(() => {
+	useEffect(() => {
 		window.addEventListener('keypress', handleKeyDown)
 
 		return () => {
@@ -40,14 +37,13 @@ export function Headlight() {
 					/>
 
 					<pointLight
-						ref={stripe}
-						intensity={head}
+							intensity={head}
 						color={[125, 205, 255]}
 						distance={10}
 						position={[4.1, -1.21, 1.5]}
 					/>
 					<pointLight
-						ref={stripe1}
+					
 						intensity={head}
 						color={[125, 205, 255]}
 						distance={10}
@@ -55,6 +51,7 @@ export function Headlight() {
 					/>
 				</group>
 			</group>
+
 		</>
 	)
 }

@@ -22,10 +22,10 @@ export function BackLight() {
 			setInten(0)
 		}
 		if (event.code === 'Digit2') {
-			setInten(0.5)
+			setInten(1)
 		}
 		if (event.code === 'Digit3') {
-			setInten(0.5)
+			setInten(1)
 		}
 	}
 

@@ -10,12 +10,7 @@ export function Wheels() {
 					material={materials.tires}
 					position={[0.269, -1.992, 0.035]}
 					scale={0.021}
-				><Edges
-				linewidth={3}
-				scale={1.002}
-				threshold={15}
-				color='#2a5e58'
-			/>
+				>
 			</mesh>
 
 				<mesh

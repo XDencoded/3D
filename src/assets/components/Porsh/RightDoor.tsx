@@ -3,11 +3,10 @@ import { useGLTF } from '@react-three/drei'
 export function RightDoor() {
 	const { nodes, materials } = useGLTF<any>('porsh/scene.gltf') as any
 	return (
-		<group dispose={null}>
+		<group  dispose={null}>
 			<group position={[0, 0, 0]}>
 
 				<mesh
-				
 					geometry={nodes.Object_11.geometry}
 					material={materials.body_main}
 					position={[0.778, -1.478, 1.76]}
