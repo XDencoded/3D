@@ -1,28 +1,75 @@
 
+import { Environment, Lightformer } from '@react-three/drei';
 
-export function Light(): JSX.Element | null {
+export function Light() {
 	return (
 		<>
-			<color args={[0, 0, 0]} attach='background' />
+		<Environment frames={Infinity} resolution={512} blur={1}>
+				<color args={[0, 0, 0]} attach='background'  />
+				<Lightformer
+					intensity={1}
+					rotation-x={Math.PI / 2}
+					position={[-9, 10, 0]}
+					scale={[1, 10, 1]}
+				/>
+				<Lightformer
+					intensity={1}
+					rotation-x={Math.PI / 2}
+					position={[-6, 10, 0]}
+					scale={[1, 10, 1]}
+				/>
+				<Lightformer
+					intensity={1}
+					rotation-x={Math.PI / 2}
+					position={[-3, 10, 0]}
+					scale={[1, 10, 1]}
+				/>
+				<Lightformer
+					intensity={1}
+					rotation-x={Math.PI / 2}
+					position={[0, 10, 0]}
+					scale={[1, 10, 1]}
+				/>
+				<Lightformer
+					intensity={1}
+					rotation-x={Math.PI / 2}
+					position={[3, 10, 0]}
+					scale={[1, 10, 1]}
+				/>
+				<Lightformer
+					intensity={1}
+					rotation-x={Math.PI / 2}
+					position={[6, 10, 0]}
+					scale={[1, 10, 1]}
+				/>
+				<Lightformer
+					intensity={1}
+					rotation-x={Math.PI / 2}
+					position={[9, 10, 0]}
+					scale={[1, 10, 1]}
+				/>
+				{/* Sides */}
+				<Lightformer intensity={5} position={[0, 2, -50]} scale={[100, 2, 1]} />
+				<Lightformer intensity={5} position={[0, 2, 50]} scale={[100, 2, 1]} />
+				{/* Key */}
 
-			<spotLight
-				color={[1, 0.25, 0.7]}
-				intensity={1.5}
-				angle={0.6}
-				penumbra={0.5}
-				position={[5, 2, 0]}
-				castShadow
-				shadow-bias={-0.0001}
-			/>
-			<spotLight
-				color={[0.14, 0.5, 1]}
-				intensity={2}
-				angle={0.6}
-				penumbra={0.5}
-				position={[-5, 5, 0]}
-				castShadow
-				shadow-bias={-0.0001}
-			/>
+				<Lightformer
+					form='ring'
+					color='#ffd700'
+					intensity={2}
+					scale={5}
+					position={[-20, 5, 20]}
+					onUpdate={(self) => self.lookAt(0, 0, 0)}
+				/>
+				<Lightformer
+					form='ring'
+					color='#ffd700'
+					intensity={2}
+					scale={5}
+					position={[20, 5, -20]}
+					onUpdate={(self) => self.lookAt(0, 0, 0)}
+				/>
+			</Environment>
 			
 		</>
 	)

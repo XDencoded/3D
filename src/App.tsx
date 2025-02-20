@@ -8,11 +8,13 @@ import { Camera } from './assets/components/Camera/Camera'
 import { BMW } from './assets/components/BMW/bmw'
 import { Ground } from './assets/components/Ground'
 import { Rings } from './assets/components/Rings'
-import { CubeCamera, Environment } from '@react-three/drei'
+import { CubeCamera, Environment, Sky } from '@react-three/drei'
+import { Boxs } from './assets/components/Box/box'
+import { Porsh } from './assets/components/Porsh'
 
 export function App(): JSX.Element | null {
 	return (
-		<Suspense fallback={<h1>ЗАГРУЗКА...</h1>}>
+		<Suspense fallback={null}>
 			<Canvas camera={{far:15}} shadows>
 				<Camera  />
 				<Light />
@@ -20,13 +22,16 @@ export function App(): JSX.Element | null {
 					{(texture) => (
 						<>
 							<Environment map={texture} />
-							<BMW />
+							<Porsh position={[0,1.4,0]} />
 						</>
 					)}
 				</CubeCamera>
+
 				<Rings />
+				<Boxs />
 				<Ground />
-				<Effects />
+				<Sky distance={450000} sunPosition={[0, 1, 0]} inclination={0} azimuth={0.25}  />
+				{/* <Effects /> */}
 			</Canvas>
 		</Suspense>
 	)

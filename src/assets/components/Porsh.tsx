@@ -13,7 +13,7 @@ export function Porsh(props: { position: Vector3 }) {
 
 	return (
 		<group castShadow dispose={null}>
-			<group {...props}>
+			<group {...props} rotation-y={1.5} scale={0.5}>
 				{/* Задний свет */}
 				<BackLight />
 				{/* Передний свет */}
